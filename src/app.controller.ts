@@ -10,8 +10,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/:dd/:id')
-  getHi(@Param('id') id: string, @Param('dd') dd: string): string {
-    return this.appService.getHi(id) + ' this is ' + dd;
-  }
+  // @Get('/:dd/:id')
+  // getHi(@Param('id') id: string, @Param('dd') dd: string): string {
+  //   return this.appService.getHi(id) + ' this is ' + dd;
+  // }
 }
