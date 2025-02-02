@@ -1,13 +1,15 @@
-import { Controller, Param, Post, Get, Put, Delete, HttpException, HttpStatus, ParseIntPipe } from '@nestjs/common';
+import { Controller, Param, Post, Get, Put, Delete, HttpException, HttpStatus, ParseIntPipe, Body } from '@nestjs/common';
 import { SongsService } from './songs.service';
+import { CreateSongDto } from './dto/create-song.dto';
 
 @Controller('songs')
 export class SongsController {
   constructor(private songsService: SongsService) {}
+
   @Post()
-  create(@Param('song') song: string) {
-    // return this.songsService.create(song);
-    return this.songsService.create("Animals by Martin Garrix");
+  create(@Body() createSongDTO: CreateSongDto) {
+    const results = this.songsService.create(createSongDTO);
+    return results;
   }
 
   @Get()
@@ -24,9 +26,7 @@ export class SongsController {
   findOne(
     @Param(
       'id', 
-      new ParseIntPipe({
-        errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE
-      })
+      new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE})
     )
     id: number,
   ) {
