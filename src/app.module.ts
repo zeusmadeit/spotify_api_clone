@@ -16,6 +16,14 @@ import { DevConfigService } from './common/providers/DevConfigService';
       provide: DevConfigService,
       useClass: DevConfigService,
     },
+    // Factory based providers are used when the provision 
+    // of a class or value is contingent upon runtime conditions
+    {
+      provide: "CONFIG",
+      useFactory:  () => {
+        return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
+      },
+    },
   ],
 })
 export class AppModule implements NestModule {
@@ -27,3 +35,10 @@ export class AppModule implements NestModule {
     consumer.apply(LoggerMiddleware).forRoutes(SongsController); //option no 3
   }
 }
+
+const devConfig = {
+  port: 3000
+};
+  const proConfig = {
+  port: 400
+};

@@ -1,8 +1,11 @@
-import { Controller, Param, Post, Get, Put, Delete, HttpException, HttpStatus, ParseIntPipe, Body } from '@nestjs/common';
+import { Controller, Param, Post, Get, Put, Delete, HttpException, HttpStatus, ParseIntPipe, Body, Scope } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
 
-@Controller('songs')
+@Controller({
+  path: "songs",
+  scope: Scope.REQUEST, // A new instance of SongsController is created for every incoming request
+})
 export class SongsController {
   constructor(private songsService: SongsService) {}
 

@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, Scope } from '@nestjs/common';
 import { Connection } from 'src/common/constants/connection';
 
-@Injectable()
+@Injectable({scope: Scope.TRANSIENT})
 export class SongsService {
   constructor(@Inject("CONNECTION") connection: Connection) {
     console.log("connection string", connection.CONNECTION_STRING);
