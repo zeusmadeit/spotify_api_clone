@@ -8,7 +8,20 @@ import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/DevConfigService';
 
 @Module({
-  imports: [SongsModule, LoggerModule],
+  imports: [
+    SongsModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'your_username',
+      password: 'your_db_password',
+      database: 'n-test',
+      entities: [],
+      synchronize: true,
+    }),
+    LoggerModule,     
+  ],
   controllers: [AppController],
   providers: [
     AppService,
@@ -27,6 +40,7 @@ import { DevConfigService } from './common/providers/DevConfigService';
   ],
 })
 export class AppModule implements NestModule {
+  // 
   configure(consumer: MiddlewareConsumer) {
     // consumer.apply(LoggerMiddleware).forRoutes('songs'); // option no 1
     // consumer
