@@ -10,4 +10,10 @@ import {
 export class Artist {
   @PrimaryGeneratedColumn()
   id: number;
+
+  // A user can register as an artist
+  // Each artist will have only a user profile
+  @OneToOne(() => User)
+  @JoinColumn()
+  user: User;
 }
