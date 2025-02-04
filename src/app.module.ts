@@ -11,6 +11,8 @@ import { DataSource } from 'typeorm';
 import { Song } from './songs/entities/song.entity';
 import { UsersModule } from './users/users.module';
 import { ArtistsModule } from './artists/artists.module';
+import { User } from './users/entities/user.entity';
+import { Artist } from './artists/entities/artist.entity';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { ArtistsModule } from './artists/artists.module';
       username: 'postgres',
       password: 'mysecretpassword',
       database: 'spotify_db',
-      entities: [Song],
+      entities: [Song, User, Artist],
       synchronize: true, // set to false in production
     }),
     LoggerModule,
