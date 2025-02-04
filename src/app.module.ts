@@ -45,7 +45,7 @@ import { Song } from './songs/entities/song.entity';
 export class AppModule implements NestModule {
   // inject the DataSource class into the AppModule
   constructor(private dataSource: DataSource) {
-    console.log('database is:', dataSource.driver.database);
+    console.log('Database:', dataSource.driver.database);
   }
   // configure middlewares to be used in the application
   configure(consumer: MiddlewareConsumer) {
