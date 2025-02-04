@@ -1,7 +1,9 @@
 import { Controller, Param, Post, Get, Put, Delete, HttpException, HttpStatus, ParseIntPipe, Body, Scope } from '@nestjs/common';
 import { SongsService } from './songs.service';
-import { CreateSongDto } from './dto/create-song.dto';
 import { Song } from './entities/song.entity';
+import { CreateSongDto } from './dto/create-song.dto';
+import { UpdateSongDto } from './dto/update-song.dto';
+import { UpdateResult } from 'typeorm';
 
 @Controller({
   path: "songs",
@@ -35,16 +37,15 @@ export class SongsController {
   }
 
   @Put(':id')
-  update() {
-    return 'Update a song';
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateSongDTO: UpdateSongDto
+  ): Promise<UpdateResult> {
+    return this.songsService.update(id, updateSongDTO);
   }
 
   @Delete(':id')
-  remove(
-    @Param('id', new ParseIntPipe(
-      {errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}
-    )) id: number
-  ): Promise<void> {
+  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.songsService.delete(id);
   }
 }
