@@ -6,6 +6,8 @@ import { LoggerModule } from './common/middleware/logger/logger.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/DevConfigService';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -14,13 +16,13 @@ import { DevConfigService } from './common/providers/DevConfigService';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'your_username',
-      password: 'your_db_password',
-      database: 'n-test',
+      username: 'postgres',
+      password: 'mysecretpassword',
+      database: 'spotify_db',
       entities: [],
-      synchronize: true,
+      synchronize: true, // set to false in production
     }),
-    LoggerModule,     
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [
@@ -40,7 +42,11 @@ import { DevConfigService } from './common/providers/DevConfigService';
   ],
 })
 export class AppModule implements NestModule {
-  // 
+  // inject the DataSource class into the AppModule
+  constructor(private dataSource: DataSource) {
+    console.log('database is:', dataSource.driver.database);
+  }
+  // configure middlewares to be used in the application
   configure(consumer: MiddlewareConsumer) {
     // consumer.apply(LoggerMiddleware).forRoutes('songs'); // option no 1
     // consumer
