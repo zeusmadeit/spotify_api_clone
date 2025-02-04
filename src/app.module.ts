@@ -9,6 +9,7 @@ import { DevConfigService } from './common/providers/DevConfigService';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Song } from './songs/entities/song.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Song } from './songs/entities/song.entity';
       synchronize: true, // set to false in production
     }),
     LoggerModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [
