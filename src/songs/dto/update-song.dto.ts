@@ -3,6 +3,7 @@ import {
   IsDate,
   IsDateString,
   IsInt,
+  IsNumber,
   IsOptional,
   IsMilitaryTime,
   IsNotEmpty,
@@ -16,8 +17,9 @@ export class UpdateSongDto {
 
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
+  @IsNumber({}, { each: true })
   readonly artists;
+
 
   @IsDateString()
   @IsOptional()
