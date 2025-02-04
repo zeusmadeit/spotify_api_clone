@@ -3,6 +3,7 @@ import {
   IsDate,
   IsDateString,
   IsInt,
+  IsOptional,
   IsMilitaryTime,
   IsNotEmpty,
   IsString,
@@ -25,6 +26,10 @@ export class CreateSongDto {
   @IsMilitaryTime()
   @IsNotEmpty()
   readonly duration: Date;
+
+  @IsString()
+  @IsOptional()
+  readonly lyrics: string;
 
   // @IsArray()
   // @IsNotEmpty()

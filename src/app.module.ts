@@ -8,6 +8,7 @@ import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/DevConfigService';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { Song } from './songs/entities/song.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { DataSource } from 'typeorm';
       username: 'postgres',
       password: 'mysecretpassword',
       database: 'spotify_db',
-      entities: [],
+      entities: [Song],
       synchronize: true, // set to false in production
     }),
     LoggerModule,
