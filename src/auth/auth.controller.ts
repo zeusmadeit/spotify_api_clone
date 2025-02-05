@@ -10,12 +10,12 @@ export class AuthController {
   constructor(private userService: UsersService, private authService: AuthService) {}
 
   @Post("signup")
-  signup(@Body() userDTO: CreateUserDTO): Promise<User> {
+  signup(@Body() userDTO: CreateUserDTO): Promise<User | Partial<User>> {
     return this.userService.create(userDTO);
   }
 
   @Post('login')
-  login(@Body() loginDTO: LoginDTO) {
+  login(@Body() loginDTO: LoginDTO): Promise<User | Partial<User>> {
     return this.authService.login(loginDTO);
   }
 }
