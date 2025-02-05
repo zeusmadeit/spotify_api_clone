@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Connection } from 'src/common/constants/connection';
 import { Song } from './entities/song.entity';
 import { In, Repository, UpdateResult } from 'typeorm';
-import { CreateSongDto } from './dto/create-song.dto';
-import { UpdateSongDto } from './dto/update-song.dto';
+import { CreateSongDTO } from './dto/create-song.dto';
+import { UpdateSongDTO } from './dto/update-song.dto';
 import { paginate, Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';  
 import { Artist } from 'src/artists/entities/artist.entity';
 
@@ -27,7 +27,7 @@ export class SongsService {
     // return paginate<Song>(this.songRepository, options); 
   }
 
-  async create(songDTO: CreateSongDto): Promise<Song> {
+  async create(songDTO: CreateSongDTO): Promise<Song> {
     // Save the song in the database
     const song = new Song();
     song.title = songDTO.title;
@@ -37,7 +37,6 @@ export class SongsService {
     song.releasedDate = songDTO.releasedDate;
 
     // fetch the artists from the db
-    // const artists = await this.artistRepository.findByIds(songDTO.artists); // this method is deprecated
     const artists = await this.artistRepository.findBy({ id: In(songDTO.artists) });
     song.artists = artists;
 
@@ -54,7 +53,7 @@ export class SongsService {
     return await this.songRepository.findOneBy({id});
   }
 
-  update(id: number, recordToUpdate: UpdateSongDto): Promise<UpdateResult> {
+  update(id: number, recordToUpdate: UpdateSongDTO): Promise<UpdateResult> {
     return this.songRepository.update(id, recordToUpdate);
   }    
 

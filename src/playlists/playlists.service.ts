@@ -4,7 +4,7 @@ import { Playlist } from "./entities/playlist.entity";
 import { In, Repository } from "typeorm";
 import { Song } from "src/songs/entities/song.entity";
 import { User } from 'src/users/entities/user.entity';
-import { CreatePlaylistDto } from './dto/create-playlist.dto';
+import { CreatePlaylistDTO } from './dto/create-playlist.dto';
 
 @Injectable()
 export class PlaylistsService {
@@ -14,7 +14,7 @@ export class PlaylistsService {
     @InjectRepository(User) private userRepo: Repository<User>
   ) {}
   
-  async create(playlistDTO: CreatePlaylistDto): Promise<Playlist> {
+  async create(playlistDTO: CreatePlaylistDTO): Promise<Playlist> {
     const playList = new Playlist();
     playList.name = playlistDTO.name;
     // songs will be the array of IDs that we are getting from the DTO object

@@ -1,8 +1,8 @@
 import { Controller, Param, Post, Get, Put, Delete, HttpException, HttpStatus, Query, DefaultValuePipe, ParseIntPipe, Body, Scope } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { Song } from './entities/song.entity';
-import { CreateSongDto } from './dto/create-song.dto';
-import { UpdateSongDto } from './dto/update-song.dto';
+import { CreateSongDTO } from './dto/create-song.dto';
+import { UpdateSongDTO } from './dto/update-song.dto';
 import { UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';  
 
@@ -14,7 +14,7 @@ export class SongsController {
   constructor(private songsService: SongsService) {}
 
   @Post()
-  create(@Body() createSongDTO: CreateSongDto): Promise<Song> {
+  create(@Body() createSongDTO: CreateSongDTO): Promise<Song> {
     return this.songsService.create(createSongDTO);
   }
 
@@ -48,7 +48,7 @@ export class SongsController {
   @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateSongDTO: UpdateSongDto
+    @Body() updateSongDTO: UpdateSongDTO
   ): Promise<UpdateResult> {
     return this.songsService.update(id, updateSongDTO);
   }

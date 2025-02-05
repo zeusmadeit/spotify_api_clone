@@ -8,8 +8,8 @@ import {
   Body, 
   ParseIntPipe 
 } from '@nestjs/common';
-import { CreateArtistDto } from './dto/create-artist.dto';
-import { UpdateArtistDto } from './dto/update-artist.dto';
+import { CreateArtistDTO } from './dto/create-artist.dto';
+import { UpdateArtistDTO } from './dto/update-artist.dto';
 import { Artist } from './entities/artist.entity';
 import { ArtistsService } from './artists.service';
 
@@ -18,8 +18,8 @@ export class ArtistsController {
   constructor(private readonly artistsService: ArtistsService) {}
 
   // @Post()
-  // async create(@Body() createArtistDto: CreateArtistDto): Promise<Artist> {
-  //   return await this.artistsService.create(createArtistDto);
+  // async create(@Body() createArtistDTO: CreateArtistDTO): Promise<Artist> {
+  //   return await this.artistsService.create(createArtistDTO);
   // }
 
   // @Get()
@@ -33,8 +33,8 @@ export class ArtistsController {
   // }
 
   // @Patch(':id')
-  // update(@Param('id', ParseIntPipe) id: number, @Body() updateArtistDto: UpdateArtistDto) {
-  //   return this.artistsService.update(id, updateArtistDto);
+  // update(@Param('id', ParseIntPipe) id: number, @Body() updateArtistDTO: UpdateArtistDTO) {
+  //   return this.artistsService.update(id, updateArtistDTO);
   // }
 
   // @Delete(':id')

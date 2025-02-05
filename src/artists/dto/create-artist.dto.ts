@@ -5,7 +5,7 @@ import {
   IsNotEmpty,
 } from "class-validator";
 
-export class CreateArtistDto {
+export class CreateArtistDTO {
   @IsNumber()
   @IsNotEmpty()
   readonly user: number;
