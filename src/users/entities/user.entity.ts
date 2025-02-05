@@ -23,9 +23,9 @@ export class User {
   @OneToMany(() => Playlist, (playlist) => playlist.user)
   playlists: Playlist[];
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({select: false})
   password: string;
 }
