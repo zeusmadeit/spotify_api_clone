@@ -17,28 +17,28 @@ import { ArtistsService } from './artists.service';
 export class ArtistsController {
   constructor(private readonly artistsService: ArtistsService) {}
 
-  @Post()
-  async create(@Body() createArtistDto: CreateArtistDto): Promise<Artist> {
-    return await this.artistsService.create(createArtistDto);
-  }
+  // @Post()
+  // async create(@Body() createArtistDto: CreateArtistDto): Promise<Artist> {
+  //   return await this.artistsService.create(createArtistDto);
+  // }
 
-  @Get()
-  async findAll(): Promise<Artist[]> {
-    return await this.artistsService.findAll();
-  }
+  // @Get()
+  // async findAll(): Promise<Artist[]> {
+  //   return await this.artistsService.findAll();
+  // }
 
-  @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Artist | null> {
-    return await this.artistsService.findOne(id);
-  }
+  // @Get(':id')
+  // async findOne(@Param('id', ParseIntPipe) id: number): Promise<Artist | null> {
+  //   return await this.artistsService.findOne(id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateArtistDto: UpdateArtistDto) {
-    return this.artistsService.update(id, updateArtistDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id', ParseIntPipe) id: number, @Body() updateArtistDto: UpdateArtistDto) {
+  //   return this.artistsService.update(id, updateArtistDto);
+  // }
 
-  @Delete(':id')
-  async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
-    this.artistsService.delete(id);
-  }
+  // @Delete(':id')
+  // async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  //   this.artistsService.delete(id);
+  // }
 }
