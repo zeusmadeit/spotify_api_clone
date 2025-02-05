@@ -8,10 +8,10 @@ import { User } from './entities/user.entity';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  async create(@Body() createUserDTO: CreateUserDTO): Promise<User> {
-    return await this.usersService.create(createUserDTO);
-  }
+  // @Post() // Functionality moved into the auth module - 'auth/signup'
+  // async create(@Body() createUserDTO: CreateUserDTO): Promise<User> {
+  //   return await this.usersService.create(createUserDTO);
+  // }
 
   @Get()
   async findAll(): Promise<User[]> {

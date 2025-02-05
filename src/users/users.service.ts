@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
@@ -11,10 +11,14 @@ export class UsersService {
   constructor(@InjectRepository(User) private usersRepository: Repository<User>) {}
 
   async create(userDTO: CreateUserDTO): Promise<User> {
+    // check for a duplicate user before attempting to create one
+    const duplicate_user = await this.usersRepository.findOneBy({email: userDTO.email});
+    if (duplicate_user) {
+      throw new HttpException('user with email already exist', HttpStatus.CONFLICT,);
+    }
     const salt = await bcrypt.genSalt();
     userDTO.password = await bcrypt.hash(userDTO.password, salt);
     const user = await this.usersRepository.save(userDTO);
-    delete user.password;
     return user;
   }
 
