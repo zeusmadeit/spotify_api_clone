@@ -19,12 +19,12 @@ export class Playlist {
   /**
   * Each Playlist will have multiple songs
   */
-  @OneToMany(() => Song, (song) => song.playList)
+  @OneToMany(() => Song, (song) => song.playlist)
   songs: Song[];
 
   /**
   * Many Playlist can belong to a single unique user
   */
-  @ManyToOne(() => User, (user) => user.playLists)
+  @ManyToOne(() => User, (user) => user.playlists)
   user: User;
 }

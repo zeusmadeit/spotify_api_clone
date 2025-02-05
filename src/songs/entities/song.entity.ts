@@ -24,7 +24,7 @@ export class Song {
   /**
   * Many songs can belong to the playlist for each unique user
   */
-  @ManyToOne(() => Playlist, (playList) => playList.songs)
+  @ManyToOne(() => Playlist, (playlist) => playlist.songs)
   playlist: Playlist;
 
   @Column({ type: "date" })
