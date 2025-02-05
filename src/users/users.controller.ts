@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { PartialType } from '@nestjs/mapped-types';
 
 @Controller('users')
 export class UsersController {
@@ -20,7 +21,7 @@ export class UsersController {
 
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<User | null> {
-    return await this.usersService.findOne(id);
+    return await this.usersService.findOne({id: id});
   }
 
   @Patch(':id')

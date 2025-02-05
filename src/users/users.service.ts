@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
@@ -26,8 +26,14 @@ export class UsersService {
     return await this.usersRepository.find();
   }
 
-  async findOne(id: number): Promise<User | null> {
-    return await this.usersRepository.findOneBy({id});
+  async findOne(data: Partial<User>): Promise<User> {
+    const user = data.email? 
+      await this.usersRepository.findOneBy({ email: data.email }) : 
+      await this.usersRepository.findOneBy({ id: data.id });
+    if (!user) {
+    throw new UnauthorizedException('Could not find user');
+    }
+    return user;
   }
 
   update(id: number, recordToUpdate: UpdateUserDTO): Promise<UpdateResult> {
