@@ -26,6 +26,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({select: false})
+  // @Column({select: false}) // to exclude the password from query results
+  @Column()
   password: string;
 }
