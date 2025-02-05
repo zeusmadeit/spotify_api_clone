@@ -21,7 +21,7 @@ export class User {
   * A user can create many playLists
   */
   @OneToMany(() => Playlist, (playList) => playList.user)
-  playLists: Playlist[];
+  playlists: Playlist[];
 
   @Column()
   email: string;

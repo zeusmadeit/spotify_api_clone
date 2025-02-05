@@ -14,6 +14,7 @@ import { ArtistsModule } from './artists/artists.module';
 import { User } from './users/entities/user.entity';
 import { Artist } from './artists/entities/artist.entity';
 import { PlaylistsModule } from './playlists/playlists.module';
+import { Playlist } from './playlists/entities/playlist.entity';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
       username: 'postgres',
       password: 'mysecretpassword',
       database: 'spotify_db',
-      entities: [Song, User, Artist],
+      entities: [Song, User, Artist, Playlist],
       synchronize: true, // set to false in production
     }),
     LoggerModule,
@@ -53,7 +54,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
 export class AppModule implements NestModule {
   // inject the DataSource class into the AppModule
   constructor(private dataSource: DataSource) {
-    console.log('Database:', dataSource.driver.database);
+    // console.log('Database:', dataSource.driver.database);
   }
   // configure middlewares to be used in the application
   configure(consumer: MiddlewareConsumer) {
