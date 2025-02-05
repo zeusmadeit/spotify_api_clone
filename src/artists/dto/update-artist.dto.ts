@@ -4,7 +4,7 @@ import {
   IsOptional,
 } from "class-validator";
 
-export class CreateArtistDto {
+export class UpdateArtistDto {
   @IsOptional()
   @IsArray()
   @IsNumber({}, { each: true })
